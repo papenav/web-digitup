@@ -15,7 +15,10 @@ export default function ContactoPage() {
 
     const data = {
       nombre: formData.get("nombre"),
+      empresa: formData.get("empresa"),
       email: formData.get("email"),
+      telefono: formData.get("telefono"),
+      servicio: formData.get("servicio"),
       mensaje: formData.get("mensaje"),
     };
 
@@ -38,10 +41,7 @@ export default function ContactoPage() {
         Contacto Digitup
       </h1>
 
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-xl mx-auto space-y-4"
-      >
+      <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-4">
         <input
           type="text"
           name="nombre"
@@ -51,12 +51,49 @@ export default function ContactoPage() {
         />
 
         <input
+          type="text"
+          name="empresa"
+          placeholder="Empresa"
+          className="w-full border p-3 rounded-lg"
+        />
+
+        <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Correo electrónico"
           required
           className="w-full border p-3 rounded-lg"
         />
+
+        <input
+          type="text"
+          name="telefono"
+          placeholder="Teléfono / WhatsApp"
+          className="w-full border p-3 rounded-lg"
+        />
+
+        <select
+          name="servicio"
+          required
+          className="w-full border p-3 rounded-lg bg-white"
+          defaultValue=""
+        >
+          <option value="" disabled>
+            Selecciona un servicio
+          </option>
+          <option value="Diagnóstico y Asesoría TI">Diagnóstico y Asesoría TI</option>
+          <option value="Automatización de Procesos">Automatización de Procesos</option>
+          <option value="Desarrollo de Soluciones a Medida">
+            Desarrollo de Soluciones a Medida
+          </option>
+          <option value="Implementación de Soluciones Cloud">
+            Implementación de Soluciones Cloud
+          </option>
+          <option value="Soporte y Administración TI">
+            Soporte y Administración TI
+          </option>
+          <option value="Transformación Digital">Transformación Digital</option>
+        </select>
 
         <textarea
           name="mensaje"
@@ -74,8 +111,11 @@ export default function ContactoPage() {
         </button>
 
         {success && (
-          <p className="text-green-600 text-center">
-            Solicitud enviada correctamente 🚀
+          <p className="text-green-600 text-center font-medium">
+            Solicitud enviada correctamente ✔
+            <span className="block text-sm mt-1 text-gray-600">
+              Te contactaremos pronto
+            </span>
           </p>
         )}
       </form>

@@ -1,8 +1,10 @@
+export const runtime = "nodejs";
+
 import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    const { nombre, email, mensaje } = await req.json();
+    const { nombre, empresa, email, telefono, servicio, mensaje } = await req.json();
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
@@ -18,13 +20,16 @@ export async function POST(req: Request) {
       from: process.env.SMTP_USER,
       to: process.env.CONTACT_EMAIL,
       subject: `Nueva solicitud desde Digitup - ${nombre}`,
-      text: `
-Nombre: ${nombre}
-Email: ${email}
+    text: `
+    Nombre: ${nombre}
+    Empresa: ${empresa || "-"}
+    Email: ${email}
+    Teléfono: ${telefono || "-"}
+    Servicio: ${servicio}
 
-Mensaje:
-${mensaje}
-      `,
+    Mensaje:
+    ${mensaje}
+    `,
     });
 
     return Response.json({ ok: true });
