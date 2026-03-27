@@ -113,6 +113,9 @@ export default function ContactoPage() {
           <option value="Transformación Digital">
             Transformación Digital
           </option>
+          <option value="Reportabilidad y Analítica">
+            Reportabilidad y Analítica
+          </option>
         </select>
 
         <textarea

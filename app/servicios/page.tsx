@@ -4,7 +4,8 @@ import {
   Code,
   Cloud,
   Wrench,
-  BarChart
+  RefreshCw,
+  BarChart3,
 } from "lucide-react";
 
 export default function ServiciosPage() {
@@ -67,12 +68,22 @@ export default function ServiciosPage() {
         </div>
 
         <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
-          <BarChart className="mb-4 mx-auto text-black" size={40} />
+          <RefreshCw className="mb-4 mx-auto text-black" size={40} />
           <h2 className="text-xl font-semibold mb-3">
             Transformación Digital
           </h2>
           <p className="text-gray-600">
-            Levantamiento y modelamiento de procesos, diseño de soluciones digitales e implementación tecnológica.
+            Levantamiento de procesos, diseño de soluciones digitales e implementación tecnológica para modernizar la gestión empresarial.
+          </p>
+        </div>
+
+        <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
+          <BarChart3 className="mb-4 mx-auto text-black" size={40} />
+          <h2 className="text-xl font-semibold mb-3">
+            Reportabilidad y Analítica
+          </h2>
+          <p className="text-gray-600">
+            Diseño de dashboards, indicadores y reportes para mejorar visibilidad, control y toma de decisiones.
           </p>
         </div>
       </div>
