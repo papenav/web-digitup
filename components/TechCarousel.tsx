@@ -21,6 +21,18 @@ const techs = [
     name: "Power Apps",
     path: "M12 2L22 7V17L12 22L2 17V7L12 2Z",
   },
+  {
+    name: "Power Platform",
+    path: "M3 3H21V21H3V3Z",
+  },
+  {
+    name: "Argo",
+    path: "M12 2L19 21H5L12 2Z",
+  },
+  {
+    name: "Microsoft 365",
+    path: "M4 4H10V10H4V4ZM14 4H20V10H14V4ZM4 14H10V20H4V14ZM14 14H20V20H14V14Z",
+  },
 ];
 
 export default function TechCarousel() {

@@ -120,7 +120,7 @@ export default function Home() {
             Herramientas y plataformas
           </p>
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Tecnologías con las que trabajamos
+            Tecnologías y plataformas con las que trabajamos
           </h2>
           <p className="text-sm sm:text-lg text-gray-600 leading-7">
             Utilizamos herramientas modernas para automatización, gestión,
