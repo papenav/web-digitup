@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-digitup.png",
+        url: "https://digitup.cl/og-digitup.png",
         width: 1200,
         height: 630,
         alt: "Digitup - Consultoría TI",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Digitup | Consultoría TI",
     description:
       "Automatización, cloud y desarrollo a medida para empresas.",
-    images: ["/og-digitup.png"],
+    images: ["https://digitup.cl/og-digitup.png"],
   },
   alternates: {
     canonical: "https://digitup.cl",
