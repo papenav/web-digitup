@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Script from "next/script";
+import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,29 +65,60 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html
-      lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-3117EQBN7L"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-3117EQBN7L');
-          `}
-        </Script>
+return (
+  <html
+    lang="es"
+    className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+  >
+    <head>
+      <meta
+        property="og:title"
+        content="Digitup | Consultoría TI y Automatización de Procesos"
+      />
+      <meta
+        property="og:description"
+        content="Consultoría TI en Antofagasta y todo Chile. Automatización de procesos y soluciones tecnológicas para empresas."
+      />
+      <meta
+        property="og:image"
+        content="https://digitup.cl/og-digitup.png"
+      />
+      <meta property="og:url" content="https://digitup.cl" />
+      <meta property="og:type" content="website" />
 
-        <Header />
-        {children}
-        <WhatsAppButton />
-      </body>
-    </html>
-  );
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:title"
+        content="Digitup | Consultoría TI y Automatización de Procesos"
+      />
+      <meta
+        name="twitter:description"
+        content="Consultoría TI en Antofagasta y todo Chile. Automatización de procesos y soluciones tecnológicas para empresas."
+      />
+      <meta
+        name="twitter:image"
+        content="https://digitup.cl/og-digitup.png"
+      />
+    </head>
+
+    <body className="min-h-full flex flex-col">
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-3117EQBN7L"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3117EQBN7L');
+        `}
+      </Script>
+
+      <Header />
+      {children}
+      <WhatsAppButton />
+    </body>
+  </html>
+);
 }
