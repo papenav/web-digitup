@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://digitup.cl"),
   title: "Digitup | Consultoría TI y Automatización de Procesos",
   description:
-    "Consultoría TI en Antofagasta y todo Chile. Automatización de procesos, soporte TI, reportabilidad, soluciones cloud y desarrollo a medida para empresas.",
+    "Automatización de procesos, soluciones cloud y desarrollo a medida para empresas en Chile.",
   keywords: [
     "consultoría TI Antofagasta",
     "soporte TI Antofagasta",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Digitup | Consultoría TI y Automatización de Procesos",
     description:
-      "Consultoría TI en Antofagasta y todo Chile. Automatización de procesos y soluciones tecnológicas para empresas.",
+      "Automatización de procesos, soluciones cloud y desarrollo a medida para empresas en Chile.",
     url: "https://digitup.cl",
     siteName: "Digitup",
     locale: "es_CL",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Digitup | Consultoría TI y Automatización de Procesos",
     description:
-      "Consultoría TI en Antofagasta y todo Chile. Automatización de procesos y soluciones tecnológicas para empresas.",
+      "Automatización de procesos, soluciones cloud y desarrollo a medida para empresas en Chile.",
     images: ["https://digitup.cl/og-digitup.jpg"],
   },
   alternates: {
@@ -69,44 +69,6 @@ export default function RootLayout({
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>
-        <meta
-          property="og:title"
-          content="Digitup | Consultoría TI y Automatización de Procesos"
-        />
-        <meta
-          property="og:description"
-          content="Consultoría TI en Antofagasta y todo Chile. Automatización de procesos y soluciones tecnológicas para empresas."
-        />
-        <meta
-          property="og:image"
-          content="https://digitup.cl/og-digitup.jpg"
-        />
-        <meta
-          property="og:image:secure_url"
-          content="https://digitup.cl/og-digitup.jpg"
-        />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:url" content="https://digitup.cl" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Digitup | Consultoría TI y Automatización de Procesos"
-        />
-        <meta
-          name="twitter:description"
-          content="Consultoría TI en Antofagasta y todo Chile. Automatización de procesos y soluciones tecnológicas para empresas."
-        />
-        <meta
-          name="twitter:image"
-          content="https://digitup.cl/og-digitup.jpg"
-        />
-      </head>
-
       <body className="min-h-full flex flex-col">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-3117EQBN7L"
