@@ -43,15 +43,15 @@ export const metadata: Metadata = {
         url: "https://digitup.cl/og-digitup.jpg",
         width: 1200,
         height: 630,
-        alt: "Digitup - Consultoría TI",
+        alt: "Digitup - Consultoría TI y Automatización de Procesos",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digitup | Consultoría TI",
+    title: "Digitup | Consultoría TI y Automatización de Procesos",
     description:
-      "Automatización, cloud y desarrollo a medida para empresas.",
+      "Consultoría TI en Antofagasta y todo Chile. Automatización de procesos y soluciones tecnológicas para empresas.",
     images: ["https://digitup.cl/og-digitup.jpg"],
   },
   alternates: {
