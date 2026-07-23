@@ -30,8 +30,14 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# package-manager local artifacts
+.pnpm-store/
+pnpm-lock.yaml
+pnpm-workspace.yaml
+
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel

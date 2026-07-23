@@ -1,92 +1,98 @@
+import Link from "next/link";
 import {
-  Search,
-  Workflow,
-  Code,
-  Cloud,
-  Wrench,
-  RefreshCw,
+  ArrowRight,
   BarChart3,
+  Cloud,
+  FileSearch,
+  Headphones,
+  Network,
+  Workflow,
 } from "lucide-react";
+import { services } from "@/lib/services";
+
+const iconMap = {
+  "diagnostico-ti": FileSearch,
+  automatizacion: Workflow,
+  reportabilidad: BarChart3,
+  integraciones: Network,
+  "cloud-colaboracion": Cloud,
+  "soporte-ti": Headphones,
+};
 
 export default function ServiciosPage() {
   return (
-    <main className="max-w-6xl mx-auto px-6 py-16">
-      <h1 className="text-4xl font-bold mb-10 text-center">
-        Servicios Digitup
-      </h1>
-
-      <div className="grid gap-8 md:grid-cols-2">
-        <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
-          <Search className="mb-4 mx-auto text-black" size={40} />
-          <h2 className="text-xl font-semibold mb-3">
-            Diagnóstico y Asesoría TI
-          </h2>
-          <p className="text-gray-600">
-            Evaluación del entorno tecnológico, identificación de oportunidades
-            de mejora y definición de estrategias alineadas a los objetivos del negocio.
+    <main className="bg-white">
+      <section className="border-b border-slate-200 bg-[#f2f7f8]">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2f7f91]">
+            Servicios Digitup
           </p>
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <h1 className="text-4xl font-semibold leading-tight text-[#123036] sm:text-5xl">
+              Soluciones para ordenar procesos, datos y continuidad operacional
+            </h1>
+            <p className="text-base leading-8 text-slate-600">
+              Cada servicio puede trabajarse de manera independiente o como
+              parte de una hoja de ruta gradual. Lo importante es avanzar con
+              alcance claro, entregables concretos y soporte posterior.
+            </p>
+          </div>
         </div>
+      </section>
 
-        <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
-          <Workflow className="mb-4 mx-auto text-black" size={40} />
-          <h2 className="text-xl font-semibold mb-3">
-            Automatización de Procesos
-          </h2>
-          <p className="text-gray-600">
-            Automatización de tareas operativas y administrativas, integración de sistemas y optimización de flujos de trabajo.
-          </p>
-        </div>
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto grid max-w-6xl gap-6 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => {
+            const Icon = iconMap[service.slug as keyof typeof iconMap];
 
-        <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
-          <Code className="mb-4 mx-auto text-black" size={40} />
-          <h2 className="text-xl font-semibold mb-3">
-            Desarrollo de Soluciones a Medida
-          </h2>
-          <p className="text-gray-600">
-            Diseño e implementación de plataformas y sistemas adaptados a las necesidades de cada empresa.
-          </p>
+            return (
+              <Link
+                key={service.slug}
+                href={`/soluciones/${service.slug}`}
+                className="group flex min-h-72 flex-col rounded-lg border border-[#d7e2e8] bg-white p-8 transition hover:-translate-y-0.5 hover:border-[#4da3b3] hover:shadow-[0_18px_45px_rgba(14,47,58,0.08)]"
+              >
+                <Icon className="text-[#2f7f91]" size={34} strokeWidth={1.7} />
+                <p className="mt-7 text-xs font-semibold uppercase tracking-[0.2em] text-[#2f7f91]">
+                  {service.eyebrow}
+                </p>
+                <h2 className="mt-4 text-xl font-semibold text-[#123036]">
+                  {service.title}
+                </h2>
+                <p className="mt-4 flex-1 text-sm leading-7 text-slate-600">
+                  {service.short}
+                </p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#1f6f82]">
+                  Ver detalle de solución
+                  <ArrowRight
+                    className="transition group-hover:translate-x-1"
+                    size={15}
+                  />
+                </span>
+              </Link>
+            );
+          })}
         </div>
+      </section>
 
-        <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
-          <Cloud className="mb-4 mx-auto text-black" size={40} />
-          <h2 className="text-xl font-semibold mb-3">
-            Implementación de Soluciones Cloud
-          </h2>
-          <p className="text-gray-600">
-            Adopción de herramientas en la nube, digitalización de procesos internos y mejora de la disponibilidad de la información.
-          </p>
+      <section className="bg-[#0e2f3a] py-12 text-white">
+        <div className="mx-auto flex max-w-6xl flex-col gap-5 px-4 sm:px-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4da3b3]">
+              Próximo paso
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">
+              Revisemos qué servicio calza mejor con tu operación
+            </h2>
+          </div>
+          <Link
+            href="/contacto"
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-[#123036] transition hover:bg-slate-100"
+          >
+            Solicitar diagnóstico
+            <ArrowRight size={16} />
+          </Link>
         </div>
-
-        <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
-          <Wrench className="mb-4 mx-auto text-black" size={40} />
-          <h2 className="text-xl font-semibold mb-3">
-            Soporte y Administración TI
-          </h2>
-          <p className="text-gray-600">
-            Soporte técnico especializado, administración de sistemas y acompañamiento continuo.
-          </p>
-        </div>
-
-        <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
-          <RefreshCw className="mb-4 mx-auto text-black" size={40} />
-          <h2 className="text-xl font-semibold mb-3">
-            Transformación Digital
-          </h2>
-          <p className="text-gray-600">
-            Levantamiento de procesos, diseño de soluciones digitales e implementación tecnológica para modernizar la gestión empresarial.
-          </p>
-        </div>
-
-        <div className="p-8 border rounded-2xl shadow-sm hover:shadow-lg transition">
-          <BarChart3 className="mb-4 mx-auto text-black" size={40} />
-          <h2 className="text-xl font-semibold mb-3">
-            Reportabilidad y Analítica
-          </h2>
-          <p className="text-gray-600">
-            Diseño de dashboards, indicadores y reportes para mejorar visibilidad, control y toma de decisiones.
-          </p>
-        </div>
-      </div>
+      </section>
     </main>
   );
 }

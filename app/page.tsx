@@ -1,153 +1,318 @@
-import InteractiveServices from "@/components/InteractiveServices";
-import { Briefcase, Handshake, Target } from "lucide-react";
-import TechCarousel from "@/components/TechCarousel";
+import Link from "next/link";
+import {
+  ArrowRight,
+  BarChart3,
+  Briefcase,
+  CheckCircle2,
+  Cloud,
+  FileSearch,
+  Handshake,
+  Headphones,
+  Network,
+  Target,
+  Workflow,
+} from "lucide-react";
 import Footer from "@/components/Footer";
+import TechCarousel from "@/components/TechCarousel";
+import { services } from "@/lib/services";
+
+const iconMap = {
+  "diagnostico-ti": FileSearch,
+  automatizacion: Workflow,
+  reportabilidad: BarChart3,
+  integraciones: Network,
+  "cloud-colaboracion": Cloud,
+  "soporte-ti": Headphones,
+};
+
+const problems = [
+  {
+    situation: "Procesos manuales y duplicados",
+    impact: "Pérdida de tiempo, errores y retrabajos.",
+    response:
+      "Estandarizamos el flujo de trabajo con criterios de buenas prácticas, responsables definidos y trazabilidad de punta a punta.",
+  },
+  {
+    situation: "Datos dispersos y poco confiables",
+    impact: "Decisiones tardías y reportes inconsistentes.",
+    response:
+      "Ordenamos fuentes, reglas de negocio e indicadores para construir información consistente y reportabilidad confiable.",
+  },
+  {
+    situation: "Dependencia de personas clave",
+    impact: "Riesgo operativo y cuellos de botella.",
+    response:
+      "Documentamos procedimientos, controles y criterios operativos para reducir dependencia informal y mejorar continuidad.",
+  },
+  {
+    situation: "Soporte reactivo y sin registro",
+    impact: "Incidentes recurrentes y usuarios insatisfechos.",
+    response:
+      "Organizamos la atención con registro, priorización, seguimiento y prácticas alineadas a gestión de servicios TI.",
+  },
+  {
+    situation: "Sistemas aislados que no conversan",
+    impact: "Información incompleta y tareas manuales.",
+    response:
+      "Definimos integraciones mantenibles, reglas de intercambio y validaciones para reducir errores entre plataformas.",
+  },
+];
+
+const valueProps = [
+  {
+    title: "Soluciones aterrizadas al negocio",
+    text: "Diseñamos soluciones prácticas, alineadas a la realidad operativa y a las prioridades de cada empresa.",
+    icon: Briefcase,
+  },
+  {
+    title: "Acompañamiento cercano y continuo",
+    text: "Trabajamos por etapas, con seguimiento, ajustes y soporte para que la solución pueda sostenerse en el tiempo.",
+    icon: Handshake,
+  },
+  {
+    title: "Tecnología con foco en resultados",
+    text: "Priorizamos mejoras que reduzcan trabajo manual, aumenten visibilidad y fortalezcan la gestión operativa.",
+    icon: Target,
+  },
+];
+
+function ServicesGrid() {
+  return (
+    <section id="soluciones" className="scroll-mt-24 bg-[#f4f8fb] py-16 sm:py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="text-center">
+          <div className="mx-auto mb-5 h-1 w-8 bg-[#4da3b3]" />
+          <h2 className="text-3xl font-semibold text-[#123036] sm:text-4xl">
+            Soluciones para ordenar tu operación
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">
+            Revisa cada enfoque en una página independiente, con alcance,
+            resultados esperados y entregables concretos.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => {
+            const Icon = iconMap[service.slug as keyof typeof iconMap];
+
+            return (
+              <Link
+                key={service.slug}
+                href={`/soluciones/${service.slug}`}
+                className="group flex min-h-72 flex-col rounded-lg border border-[#d7e2e8] bg-white p-8 transition hover:-translate-y-0.5 hover:border-[#4da3b3] hover:shadow-[0_18px_45px_rgba(14,47,58,0.08)]"
+              >
+                <Icon className="text-[#2f7f91]" size={34} strokeWidth={1.7} />
+                <p className="mt-7 text-xs font-semibold uppercase tracking-[0.2em] text-[#2f7f91]">
+                  {service.eyebrow}
+                </p>
+                <h3 className="mt-4 text-xl font-semibold text-[#123036]">
+                  {service.title}
+                </h3>
+                <p className="mt-4 flex-1 text-sm leading-7 text-slate-600">
+                  {service.short}
+                </p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#1f6f82]">
+                  Ver detalle de solución
+                  <ArrowRight
+                    className="transition group-hover:translate-x-1"
+                    size={15}
+                  />
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProblemsTable() {
+  return (
+    <section id="problemas" className="scroll-mt-24 bg-white py-16 sm:py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <div className="mb-5 h-1 w-8 bg-[#4da3b3]" />
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2f7f91]">
+              Fricciones operativas
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-[#123036] sm:text-4xl">
+              Donde la operación pierde eficiencia
+            </h2>
+          </div>
+          <p className="max-w-2xl text-base leading-8 text-slate-600 lg:justify-self-end">
+            Muchas mejoras no parten por cambiar herramientas, sino por
+            identificar dónde se pierde tiempo, trazabilidad o continuidad en el
+            trabajo diario.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-4">
+          {problems.map((problem, index) => (
+            <article
+              key={problem.situation}
+              className="group grid gap-5 rounded-lg border border-[#d7e2e8] bg-white p-5 transition hover:border-[#4da3b3] hover:shadow-[0_18px_45px_rgba(14,47,58,0.08)] md:grid-cols-[0.9fr_0.85fr_1.1fr] md:items-stretch md:p-0"
+            >
+              <div className="flex gap-4 md:border-r md:border-[#d7e2e8] md:p-5">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[#eef6f8] text-sm font-semibold text-[#1f6f82]">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+                    Situación común
+                  </p>
+                  <h3 className="mt-2 text-base font-semibold leading-6 text-[#123036]">
+                    {problem.situation}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="md:border-r md:border-[#d7e2e8] md:p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+                  Impacto
+                </p>
+                <p className="mt-2 text-sm leading-7 text-slate-600">
+                  {problem.impact}
+                </p>
+              </div>
+
+              <div className="rounded-md bg-[#f8fbfc] p-4 md:m-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2f7f91]">
+                  Enfoque de trabajo
+                </p>
+                <p className="mt-2 text-sm font-medium leading-7 text-[#123036]">
+                  {problem.response}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-8 rounded-lg border border-[#d7e2e8] bg-[#f4f8fb] px-5 py-4 text-center">
+          <p className="text-sm leading-7 text-slate-600">
+            El objetivo es transformar estas fricciones en procesos más claros,
+            datos confiables y soluciones sostenibles para el equipo.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ValueAdded() {
+  return (
+    <section id="valor" className="scroll-mt-24 bg-[#f4f8fb] py-16 sm:py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2f7f91]">
+            Valor agregado
+          </p>
+          <h2 className="text-3xl font-semibold text-[#123036]">
+            Por qué trabajar con Digitup
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-600">
+            Más que implementar tecnología, buscamos construir soluciones
+            útiles, sostenibles y alineadas a la realidad de cada operación.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {valueProps.map((item) => {
+            const Icon = item.icon;
+
+            return (
+            <article
+              key={item.title}
+              className="rounded-lg border border-[#d7e2e8] bg-white p-8 text-center shadow-[0_18px_45px_rgba(14,47,58,0.05)] transition hover:-translate-y-0.5 hover:border-[#4da3b3]"
+            >
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-md border border-[#d7e2e8] bg-[#f8fbfc] text-[#1f6f82]">
+                <Icon size={30} strokeWidth={1.7} />
+              </div>
+              <h3 className="mx-auto mt-7 max-w-64 text-lg font-semibold leading-7 text-[#123036]">
+                {item.title}
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                {item.text}
+              </p>
+            </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
-    <main className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
-      {/* HERO */}
-      <section className="text-center py-12 sm:py-16 lg:py-24">
-        <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-gray-500 mb-4">
-          Digitup
-        </p>
-
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-5 leading-tight break-words">
-          Consultoría TI y Automatización de Procesos
-        </h1>
-
-        <p className="text-base sm:text-xl mb-3 max-w-2xl mx-auto text-gray-600 px-1">
-          Soluciones tecnológicas para ordenar, automatizar y hacer crecer tu operación
-        </p>
-
-        <p className="text-sm sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto text-gray-600 px-1 leading-7">
-          Ayudamos a empresas en Antofagasta y todo Chile a optimizar, automatizar y 
-          transformar digitalmente sus procesos con soluciones tecnológicas a medida.
-        </p>
-
-        <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-4 max-w-sm sm:max-w-none mx-auto">
-          <a
-            href="#servicios"
-            className="w-full sm:w-auto bg-black text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg text-center hover:scale-[1.02] transition-all duration-200"
-          >
-            Ver servicios
-          </a>
-          <a
-            href="/contacto"
-            className="w-full sm:w-auto border border-black px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg text-center hover:scale-[1.02] transition-all duration-200"
-          >
-            Contacto
-          </a>
-        </div>
-
-        <p className="mt-5 text-xs sm:text-sm text-gray-500">
-          Atención remota en todo Chile · Atención presencial en Antofagasta
-        </p>
-      </section>
-
-      {/* SERVICIOS INTERACTIVOS */}
-      <InteractiveServices />
-
-      {/* POR QUÉ TRABAJAR CON DIGITUP */}
-      <section className="mt-16 sm:mt-24 bg-gray-50 py-10 sm:py-16 rounded-3xl">
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 px-4">
-          <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-gray-500 mb-3">
-            Valor agregado
-          </p>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Por qué trabajar con Digitup
-          </h2>
-          <p className="text-sm sm:text-lg text-gray-600 leading-7">
-            Más que implementar tecnología, buscamos entregar soluciones útiles,
-            sostenibles y alineadas a la realidad de cada negocio.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 px-4">
-          <div className="p-6 sm:p-8 bg-white border rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
-            <Briefcase className="mb-4 mx-auto text-black" size={36} />
-            <h3 className="font-bold text-base sm:text-lg mb-2">
-              Soluciones aterrizadas al negocio
-            </h3>
-            <p className="text-gray-600 text-sm sm:text-base leading-7">
-              Diseñamos propuestas prácticas, enfocadas en necesidades reales y
-              resultados concretos.
+    <main className="bg-white">
+      <section className="bg-[#0e2f3a] text-white">
+        <div className="mx-auto max-w-6xl px-4 py-20 text-center sm:px-6 sm:py-28 lg:py-32">
+          <div className="mx-auto max-w-4xl">
+            <h1 className="text-4xl font-semibold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+              Soluciones TI para fortalecer la{" "}
+              <span className="text-[#4da3b3]">gestión operativa</span> de tu
+              empresa
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/78 sm:text-lg">
+              Diseñamos e implementamos soluciones TI para mejorar procesos,
+              automatizar tareas críticas y entregar información confiable para
+              la toma de decisiones.
             </p>
-          </div>
-
-          <div className="p-6 sm:p-8 bg-white border rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
-            <Handshake className="mb-4 mx-auto text-black" size={36} />
-            <h3 className="font-bold text-base sm:text-lg mb-2">
-              Acompañamiento cercano y continuo
-            </h3>
-            <p className="text-gray-600 text-sm sm:text-base leading-7">
-              Nos involucramos en cada etapa, entregando apoyo técnico y
-              seguimiento constante.
-            </p>
-          </div>
-
-          <div className="p-6 sm:p-8 bg-white border rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
-            <Target className="mb-4 mx-auto text-black" size={36} />
-            <h3 className="font-bold text-base sm:text-lg mb-2">
-              Tecnología con foco en resultados
-            </h3>
-            <p className="text-gray-600 text-sm sm:text-base leading-7">
-              Implementamos soluciones que mejoran eficiencia, visibilidad y
-              control operacional.
-            </p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link
+                href="/contacto"
+                className="hero-border-button inline-flex items-center justify-center rounded-md border border-transparent px-5 py-3 text-sm font-semibold text-white transition"
+              >
+                Hablemos de tu operación
+              </Link>
+              <Link
+                href="/soluciones"
+                className="inline-flex items-center justify-center gap-2 rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              >
+                Ver soluciones
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+            <div className="mx-auto mt-9 flex max-w-2xl flex-col items-center justify-center gap-3 text-sm text-white/70 sm:flex-row sm:gap-6">
+              {[
+                "Procesos claros",
+                "Resultados medibles",
+                "Soporte continuo",
+              ].map((item) => (
+                <span key={item} className="inline-flex items-center gap-2">
+                  <CheckCircle2 className="text-[#4da3b3]" size={16} />
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* QUÉ ES DIGITUP */}
-      <section className="mt-16 sm:mt-20 max-w-4xl mx-auto text-center px-2">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-          ¿Qué es Digitup?
-        </h2>
-        <p className="text-sm sm:text-lg leading-7 sm:leading-8 text-gray-700">
-          Digitup es una consultora TI orientada a ayudar a empresas y
-          emprendedores a optimizar, automatizar y transformar digitalmente sus
-          procesos. A través de soluciones tecnológicas diseñadas a medida,
-          apoyamos la mejora de la eficiencia operativa, la reducción de errores
-          y el fortalecimiento de la gestión empresarial.
-        </p>
-      </section>
+      <ServicesGrid />
+      <ProblemsTable />
+      <ValueAdded />
 
-      {/* TECNOLOGÍAS */}
-      <section className="mt-16 sm:mt-20">
-        <div className="text-center max-w-3xl mx-auto px-2">
-          <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-gray-500 mb-3">
+      <section id="tecnologias" className="scroll-mt-24 bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2f7f91]">
             Herramientas y plataformas
           </p>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Tecnologías y plataformas con las que trabajamos
+          <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-semibold text-[#123036] sm:text-4xl">
+            Tecnologías con las que construimos soluciones reales
           </h2>
-          <p className="text-sm sm:text-lg text-gray-600 leading-7">
-            Utilizamos herramientas modernas para automatización, gestión,
-            analítica y despliegue de soluciones tecnológicas.
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-600">
+            Trabajamos con plataformas de automatización, datos, nube y
+            desarrollo para implementar soluciones mantenibles y alineadas a
+            cada operación.
           </p>
+
+          <TechCarousel />
         </div>
-
-        <TechCarousel />
       </section>
 
-      {/* CTA FINAL */}
-      <section className="mt-16 sm:mt-20 text-center bg-black text-white py-10 sm:py-16 px-4 rounded-2xl sm:rounded-3xl">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-          ¿Necesitas una solución tecnológica a medida?
-        </h2>
-        <p className="mb-6 max-w-2xl mx-auto text-sm sm:text-base leading-7">
-          Contáctanos para evaluar tu caso y proponerte una solución alineada a
-          tus objetivos de negocio.
-        </p>
-
-        <a
-          href="/contacto"
-          className="inline-block bg-white text-black px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-200"
-        >
-          Contactar ahora
-        </a>
-      </section>
       <Footer />
     </main>
   );

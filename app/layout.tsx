@@ -1,25 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Script from "next/script";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://digitup.cl"),
-  title: "Digitup | Consultoría TI y Automatización de Procesos",
+  title: "Digitup | Servicios TI en Antofagasta y Chile",
   description:
-    "Automatización de procesos, soluciones cloud y desarrollo a medida para empresas en Chile.",
+    "Servicios TI para empresas en Antofagasta y Chile: automatización de procesos, reportabilidad, integraciones, cloud, soporte TI y soluciones a medida.",
   keywords: [
     "consultoría TI Antofagasta",
     "soporte TI Antofagasta",
@@ -31,9 +20,9 @@ export const metadata: Metadata = {
     "desarrollo de soluciones a medida",
   ],
   openGraph: {
-    title: "Digitup | Consultoría TI y Automatización de Procesos",
+    title: "Digitup | Servicios TI en Antofagasta y Chile",
     description:
-      "Automatización de procesos, soluciones cloud y desarrollo a medida para empresas en Chile.",
+      "Automatización, reportabilidad, integraciones, cloud y soporte TI para fortalecer la gestión operativa de empresas.",
     url: "https://digitup.cl",
     siteName: "Digitup",
     locale: "es_CL",
@@ -49,14 +38,63 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digitup | Consultoría TI y Automatización de Procesos",
+    title: "Digitup | Servicios TI en Antofagasta y Chile",
     description:
-      "Automatización de procesos, soluciones cloud y desarrollo a medida para empresas en Chile.",
+      "Automatización, reportabilidad, integraciones, cloud y soporte TI para empresas en Antofagasta y Chile.",
     images: ["https://digitup.cl/og-digitup.jpg"],
   },
   alternates: {
     canonical: "https://digitup.cl",
   },
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/icon.svg",
+  },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Digitup",
+  url: "https://digitup.cl",
+  image: "https://digitup.cl/og-digitup.jpg",
+  description:
+    "Servicios TI para empresas: automatización de procesos, reportabilidad, integraciones, cloud, soporte TI y soluciones a medida.",
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Antofagasta",
+      addressCountry: "CL",
+    },
+    {
+      "@type": "Country",
+      name: "Chile",
+    },
+  ],
+  telephone: "+56933541437",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+56933541437",
+    contactType: "sales",
+    areaServed: "CL",
+    availableLanguage: "es",
+  },
+  makesOffer: [
+    "Servicios TI",
+    "Automatización de procesos",
+    "Reportabilidad y BI",
+    "Integraciones de sistemas",
+    "Cloud y colaboración",
+    "Soporte TI",
+    "Desarrollo de soluciones a medida",
+  ].map((name) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name,
+      areaServed: "Antofagasta, Chile",
+    },
+  })),
 };
 
 export default function RootLayout({
@@ -65,11 +103,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="es" className="h-full antialiased">
+      <body className="flex min-h-full flex-col pt-20">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-3117EQBN7L"
           strategy="afterInteractive"
@@ -82,6 +117,10 @@ export default function RootLayout({
             gtag('config', 'G-3117EQBN7L');
           `}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
 
         <Header />
         {children}

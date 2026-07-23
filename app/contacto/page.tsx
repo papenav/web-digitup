@@ -4,9 +4,15 @@ import ContactoPageClient from "./ContactoPageClient";
 export const metadata: Metadata = {
   title: "Contacto | Digitup",
   description:
-    "Contáctate con Digitup para consultoría TI, automatización de procesos, soporte TI, reportabilidad y soluciones tecnológicas en Antofagasta y todo Chile.",
+    "Contáctate con Digitup para servicios TI, automatización de procesos, soporte TI, reportabilidad y soluciones tecnológicas en Antofagasta y todo Chile.",
 };
 
-export default function ContactoPage() {
-  return <ContactoPageClient />;
+type ContactoPageProps = {
+  searchParams: Promise<{ servicio?: string }>;
+};
+
+export default async function ContactoPage({ searchParams }: ContactoPageProps) {
+  const { servicio } = await searchParams;
+
+  return <ContactoPageClient initialService={servicio} />;
 }

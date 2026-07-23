@@ -1,17 +1,32 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
+const navItems = [
+  { label: "Soluciones", href: "/soluciones", section: "soluciones" },
+  { label: "Problemas", href: "/problemas", section: "problemas" },
+  { label: "Valor agregado", href: "/valor-agregado", section: "valor" },
+  { label: "Tecnologías", href: "/tecnologias", section: "tecnologias" },
+];
+
+const sectionByPath: Record<string, string> = {
+  "/soluciones": "soluciones",
+  "/problemas": "problemas",
+  "/valor-agregado": "valor",
+  "/tecnologias": "tecnologias",
+};
+
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     function handleScroll() {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 16);
     }
 
     handleScroll();
@@ -20,104 +35,95 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  function handleGoTop() {
+  useEffect(() => {
+    const target = sectionByPath[pathname ?? ""];
+
+    if (!target) {
+      return;
+    }
+
+    window.setTimeout(() => {
+      document.getElementById(target)?.scrollIntoView({ behavior: "auto" });
+    }, 80);
+  }, [pathname]);
+
+  function closeMenu() {
     setOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full text-white transition-all duration-300 ${
+      className={`fixed left-0 top-0 z-50 w-full border-b bg-white/95 text-[#123036] backdrop-blur-md transition ${
         scrolled
-          ? "bg-black/95 backdrop-blur-md border-b border-white/10 shadow-lg"
-          : "bg-black"
+          ? "border-slate-200 shadow-[0_10px_30px_rgba(14,47,58,0.08)]"
+          : "border-slate-100"
       }`}
     >
-      <nav className="w-full max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* LOGO */}
+      <nav className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          onClick={handleGoTop}
-          className="flex items-center shrink-0"
+          onClick={closeMenu}
+          className="flex shrink-0 items-center"
           aria-label="Ir al inicio"
         >
-          <Image
-            src="/images/logo-digitup.png"
-            alt="Digitup"
-            width={160}
-            height={44}
-            priority
-            className="w-auto h-8 sm:h-9"
-          />
+          <span className="text-[34px] font-semibold leading-none tracking-tight text-[#123036]">
+            digit<span className="text-[#4da3b3]">up</span>
+          </span>
         </Link>
 
-        {/* MENU DESKTOP */}
-        <ul className="hidden md:flex items-center gap-6">
-          <li>
-            <Link
-              href="/"
-              className="hover:text-gray-300 transition"
-              onClick={handleGoTop}
-            >
-              Inicio
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/#servicios"
-              className="hover:text-gray-300 transition"
-            >
-              Servicios
-            </Link>
-          </li>
+        <ul className="hidden items-center gap-8 md:flex">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                onClick={closeMenu}
+                className="group relative rounded-md px-2 py-2 text-sm font-medium text-[#123036]/80 transition hover:bg-[#eef7f9] hover:text-[#1f6f82]"
+              >
+                {item.label}
+                <span className="absolute inset-x-2 -bottom-0.5 h-px origin-left scale-x-0 bg-[#4da3b3] transition-transform duration-300 group-hover:scale-x-100" />
+              </Link>
+            </li>
+          ))}
           <li>
             <Link
               href="/contacto"
-              className="hover:text-gray-300 transition"
+              className="rounded-md border border-[#4da3b3] px-4 py-2.5 text-sm font-semibold text-[#123036] transition hover:bg-[#eef7f9]"
             >
-              Contacto
+              Hablemos
             </Link>
           </li>
         </ul>
 
-        {/* BOTÓN MOBILE */}
         <button
           type="button"
           onClick={() => setOpen((prev) => !prev)}
-          className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-white/5 transition shrink-0"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-[#123036] transition hover:bg-[#eef7f9] md:hidden"
+          aria-label={open ? "Cerrar menu" : "Abrir menu"}
           aria-expanded={open}
         >
-          {open ? <X size={26} /> : <Menu size={26} />}
+          {open ? <X size={25} /> : <Menu size={25} />}
         </button>
       </nav>
 
-      {/* MENU MOBILE */}
       {open && (
-        <div className="md:hidden w-full bg-black border-t border-white/10">
-          <div className="px-4 py-4 space-y-1">
-            <Link
-              href="/"
-              onClick={handleGoTop}
-              className="block rounded-lg px-2 py-3 hover:bg-white/5 transition"
-            >
-              Inicio
-            </Link>
-
-            <Link
-              href="/#servicios"
-              onClick={() => setOpen(false)}
-              className="block rounded-lg px-2 py-3 hover:bg-white/5 transition"
-            >
-              Servicios
-            </Link>
-
+        <div className="border-t border-slate-200 bg-white md:hidden">
+          <div className="space-y-1 px-4 py-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={closeMenu}
+                className="block rounded-md px-2 py-3 text-sm font-medium text-[#123036] transition hover:bg-slate-50"
+              >
+                {item.label}
+              </Link>
+            ))}
             <Link
               href="/contacto"
-              onClick={() => setOpen(false)}
-              className="block rounded-lg px-2 py-3 hover:bg-white/5 transition"
+              onClick={closeMenu}
+              className="mt-3 block rounded-md border border-[#4da3b3] px-3 py-3 text-center text-sm font-semibold text-[#123036]"
             >
-              Contacto
+              Hablemos
             </Link>
           </div>
         </div>
