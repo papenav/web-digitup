@@ -6,9 +6,9 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://digitup.cl"),
-  title: "Digitup | Servicios TI en Antofagasta y Chile",
+  title: "Digitup | Servicios TI, Automatización y Soporte en Antofagasta",
   description:
-    "Servicios TI para empresas en Antofagasta y Chile: automatización de procesos, reportabilidad, integraciones, cloud, soporte TI y soluciones a medida.",
+    "Soluciones TI para empresas en Antofagasta y Chile: automatización de procesos, reportabilidad, integraciones, cloud y soporte tecnológico.",
   keywords: [
     "consultoría TI Antofagasta",
     "soporte TI Antofagasta",
@@ -20,28 +20,28 @@ export const metadata: Metadata = {
     "desarrollo de soluciones a medida",
   ],
   openGraph: {
-    title: "Digitup | Servicios TI en Antofagasta y Chile",
+    title: "Digitup | Servicios TI, Automatización y Soporte en Antofagasta",
     description:
-      "Automatización, reportabilidad, integraciones, cloud y soporte TI para fortalecer la gestión operativa de empresas.",
+      "Soluciones TI para fortalecer la gestión operativa de empresas: automatización, reportabilidad, integraciones, cloud y soporte tecnológico.",
     url: "https://digitup.cl",
     siteName: "Digitup",
     locale: "es_CL",
     type: "website",
     images: [
       {
-        url: "https://digitup.cl/og-digitup.jpg",
+        url: "https://digitup.cl/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Digitup - Consultoría TI y Automatización de Procesos",
+        alt: "Digitup - Soluciones TI para fortalecer la gestión operativa",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digitup | Servicios TI en Antofagasta y Chile",
+    title: "Digitup | Servicios TI, Automatización y Soporte en Antofagasta",
     description:
-      "Automatización, reportabilidad, integraciones, cloud y soporte TI para empresas en Antofagasta y Chile.",
-    images: ["https://digitup.cl/og-digitup.jpg"],
+      "Soluciones TI para empresas en Antofagasta y Chile: automatización, reportabilidad, integraciones, cloud y soporte tecnológico.",
+    images: ["https://digitup.cl/opengraph-image"],
   },
   alternates: {
     canonical: "https://digitup.cl",
@@ -57,9 +57,9 @@ const structuredData = {
   "@type": "ProfessionalService",
   name: "Digitup",
   url: "https://digitup.cl",
-  image: "https://digitup.cl/og-digitup.jpg",
+  image: "https://digitup.cl/opengraph-image",
   description:
-    "Servicios TI para empresas: automatización de procesos, reportabilidad, integraciones, cloud, soporte TI y soluciones a medida.",
+    "Soluciones TI para empresas: automatización de procesos, reportabilidad, integraciones, cloud, soporte tecnológico y soluciones a medida.",
   areaServed: [
     {
       "@type": "City",
