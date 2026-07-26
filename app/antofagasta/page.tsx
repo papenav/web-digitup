@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Servicios TI en Antofagasta | Digitup",
+  title: "Servicios TI en Antofagasta para Empresas | Digitup",
   description:
-    "Servicios TI en Antofagasta para empresas: automatización de procesos, reportabilidad, integraciones, soluciones cloud, soporte TI y desarrollo a medida.",
+    "Digitup entrega servicios TI en Antofagasta para empresas que necesitan automatizar procesos, ordenar información, integrar sistemas y fortalecer su operación tecnológica.",
   alternates: {
     canonical: "https://digitup.cl/antofagasta",
+  },
+  openGraph: {
+    title: "Servicios TI en Antofagasta para Empresas | Digitup",
+    description:
+      "Automatización de procesos, reportabilidad, integraciones, cloud y soporte tecnológico para empresas en Antofagasta.",
+    url: "https://digitup.cl/antofagasta",
+    images: [
+      {
+        url: "https://digitup.cl/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Digitup - Servicios TI para empresas en Antofagasta",
+      },
+    ],
   },
 };
 
